@@ -1,0 +1,1187 @@
+{
+    "start": "-PT168H",
+    "widgets": [
+        {
+            "height": 6,
+            "width": 8,
+            "y": 4,
+            "x": 8,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ { "expression": "ANOMALY_DETECTION_BAND(m1, 2)", "label": "Expression1", "id": "e1", "region": "eu-central-1" } ],
+                    [ "AWS/RDS", "CPUUtilization", "DBInstanceIdentifier", "production", { "id": "m1" } ]
+                ],
+                "region": "eu-central-1",
+                "title": "RDS CPUUtilization: Average",
+                "period": 300,
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 10,
+            "x": 8,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/RDS", "DatabaseConnections", "DBInstanceIdentifier", "production" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "title": "RDS DatabaseConnections: Average",
+                "period": 60,
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 40,
+            "x": 8,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/RDS", "WriteThroughput", "DBInstanceIdentifier", "production" ]
+                ],
+                "region": "eu-central-1",
+                "title": "RDS WriteThroughput: Average"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 22,
+            "x": 8,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/RDS", "NetworkTransmitThroughput", "DBInstanceIdentifier", "production" ]
+                ],
+                "region": "eu-central-1",
+                "title": "RDS NetworkTransmitThroughput: Average"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 16,
+            "x": 8,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "title": "RDS FreeableMemory: Average",
+                "metrics": [
+                    [ "AWS/RDS", "FreeableMemory", "DBInstanceIdentifier", "production" ]
+                ],
+                "region": "eu-central-1"
+            }
+        },
+        {
+            "height": 3,
+            "width": 4,
+            "y": 77,
+            "x": 8,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/RDS", "FreeStorageSpace", "DBInstanceIdentifier", "production" ]
+                ],
+                "sparkline": true,
+                "view": "singleValue",
+                "title": "RDS FreeStorageSpace: Minimum",
+                "region": "eu-central-1",
+                "period": 300,
+                "stat": "Minimum"
+            }
+        },
+        {
+            "height": 2,
+            "width": 8,
+            "y": 2,
+            "x": 8,
+            "type": "alarm",
+            "properties": {
+                "title": "RDS Alarms",
+                "alarms": [
+                    "arn:aws:cloudwatch:eu-central-1:000000000000:alarm:RDS_conn_alarm",
+                    "arn:aws:cloudwatch:eu-central-1:000000000000:alarm:RDS_disk_low",
+                    "arn:aws:cloudwatch:eu-central-1:000000000000:alarm:RDS-CPU_alarm"
+                ]
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 28,
+            "x": 8,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/RDS", "WriteIOPS", "DBInstanceIdentifier", "production" ]
+                ],
+                "region": "eu-central-1",
+                "title": "RDS WriteIOPS: Average"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 34,
+            "x": 8,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/RDS", "WriteLatency", "DBInstanceIdentifier", "production" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "stat": "Maximum",
+                "period": 300,
+                "title": "RDS WriteLatency: Maximum"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 4,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "title": "EC2 CPUUtilization: Average",
+                "metrics": [
+                    [ "AWS/EC2", "CPUUtilization", "InstanceId", "i-00000000000000000", { "id": "m1" } ],
+                    [ { "expression": "ANOMALY_DETECTION_BAND(m1, 2)", "label": "CPUUtilization (expected)", "id": "ad1", "color": "#95A5A6" } ]
+                ],
+                "region": "eu-central-1"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 16,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "m1-m4", "label": "Network In (Prod without Redis)", "id": "e1", "region": "eu-central-1" } ],
+                    [ { "expression": "m2-m3", "label": "Network Out (Prod without Redis)", "id": "e2", "region": "eu-central-1" } ],
+                    [ "AWS/EC2", "NetworkIn", "InstanceId", "i-00000000000000000", { "id": "m1", "visible": false } ],
+                    [ ".", "NetworkOut", ".", ".", { "id": "m2", "visible": false } ],
+                    [ "AWS/ElastiCache", "NetworkBytesIn", { "id": "m3", "visible": false } ],
+                    [ ".", "NetworkBytesOut", { "id": "m4", "visible": false } ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "title": "EC2 NetworkIn + NetworkOut: Average 5min",
+                "period": 300,
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 22,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "m1-m4", "label": "NetworkPacketsIn", "id": "e1" } ],
+                    [ { "expression": "m2-m3", "label": "NetworkPacketsOut", "id": "e2" } ],
+                    [ "AWS/EC2", "NetworkPacketsIn", "InstanceId", "i-00000000000000000", { "id": "m1", "visible": false } ],
+                    [ ".", "NetworkPacketsOut", ".", ".", { "id": "m2", "visible": false } ],
+                    [ "AWS/ElastiCache", "NetworkPacketsIn", { "id": "m3", "visible": false } ],
+                    [ ".", "NetworkPacketsOut", { "id": "m4", "visible": false } ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "title": "EC2 NetworkPackets In & Out without Redis: Average",
+                "region": "eu-central-1",
+                "period": 300,
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 10,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/EC2", "NetworkIn", "InstanceId", "i-00000000000000000", { "id": "m1", "yAxis": "right" } ],
+                    [ "AWS/EC2", "CPUUtilization", "InstanceId", "i-00000000000000000", { "id": "m2" } ],
+                    [ { "expression": "ANOMALY_DETECTION_BAND(m2, 2)", "label": "CPUUtilization (expected)", "id": "ad1", "color": "#95A5A6" } ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "period": 300,
+                "stat": "Average",
+                "title": "EC2 Traffic + CPU: Average"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 28,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/EC2", "EBSWriteBytes", "InstanceId", "i-00000000000000000", { "id": "m2" } ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "stat": "Average",
+                "period": 300,
+                "title": "EC2 EBSWriteBytes: Average"
+            }
+        },
+        {
+            "height": 2,
+            "width": 8,
+            "y": 2,
+            "x": 0,
+            "type": "alarm",
+            "properties": {
+                "title": "EC2 Alarms",
+                "alarms": [
+                    "arn:aws:cloudwatch:eu-central-1:000000000000:alarm:CPU_alarm_PROD",  #0000 <-account id
+                    "arn:aws:cloudwatch:eu-central-1:000000000000:alarm:Disk_space_utilization_PROD"
+                ]
+            }
+        },
+        {
+            "height": 2,
+            "width": 8,
+            "y": 0,
+            "x": 8,
+            "type": "text",
+            "properties": {
+                "markdown": "# RDS **PROD**"
+            }
+        },
+        {
+            "height": 2,
+            "width": 8,
+            "y": 0,
+            "x": 16,
+            "type": "text",
+            "properties": {
+                "markdown": "# Redis **PROD**"
+            }
+        },
+        {
+            "height": 2,
+            "width": 8,
+            "y": 0,
+            "x": 0,
+            "type": "text",
+            "properties": {
+                "markdown": "# EC2 **PROD**"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 4,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/ElastiCache", "CPUUtilization", "CacheClusterId", "prod-001", { "region": "eu-central-1" } ],
+                    [ "AWS/ElastiCache", "CPUUtilization", "CacheClusterId", "prod-cluster-0001-001", { "region": "eu-central-1" } ],
+                    [ "AWS/ElastiCache", "CPUUtilization", "CacheClusterId", "prod-cluster-0002-002", { "region": "eu-central-1" } ],
+                    [ "AWS/ElastiCache", "CPUUtilization", "CacheClusterId", "prod-cluster-0002-001", { "region": "eu-central-1" } ],
+                    [ "AWS/ElastiCache", "CPUUtilization", "CacheClusterId", "prod-cluster-0001-002", { "region": "eu-central-1" } ],
+                    [ "AWS/ElastiCache", "CPUUtilization", "CacheClusterId", "prod-cluster-0003-001", { "region": "eu-central-1" } ],
+                    [ "AWS/ElastiCache", "CPUUtilization", "CacheClusterId", "prod-cluster-0004-001", { "region": "eu-central-1" } ]
+                ],
+                "legend": {
+                    "position": "bottom"
+                },
+                "region": "eu-central-1",
+                "liveData": false,
+                "title": "CPUUtilization: Maximum per 1 min",
+                "view": "timeSeries",
+                "stacked": false,
+                "period": 60,
+                "stat": "Maximum"
+            }
+        },
+        {
+            "height": 3,
+            "width": 8,
+            "y": 81,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/ElastiCache", "FreeableMemory", "CacheClusterId", "prod-cluster-0002-002" ],
+                    [ "...", "prod-cluster-0001-002" ],
+                    [ "...", "prod-cluster-0002-001" ],
+                    [ "...", "prod-cluster-0001-001" ],
+                    [ "...", "prod-001" ],
+                    [ "...", "prod-cluster-0003-001" ],
+                    [ "...", "prod-cluster-0004-001" ]
+                ],
+                "legend": {
+                    "position": "bottom"
+                },
+                "region": "eu-central-1",
+                "liveData": false,
+                "title": "FreeableMemory: Average",
+                "view": "timeSeries",
+                "stacked": false,
+                "period": 60,
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 5,
+            "width": 8,
+            "y": 66,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/ElastiCache", "NetworkBytesIn", "CacheClusterId", "prod-cluster-0002-002" ],
+                    [ "...", "prod-cluster-0001-002" ],
+                    [ "...", "prod-cluster-0002-001" ],
+                    [ "...", "prod-cluster-0001-001" ],
+                    [ "...", "prod-001" ],
+                    [ "...", "prod-cluster-0003-001" ],
+                    [ "...", "prod-cluster-0004-001" ]
+                ],
+                "legend": {
+                    "position": "bottom"
+                },
+                "region": "eu-central-1",
+                "liveData": false,
+                "title": "NetworkBytesIn: SUM per 1 min",
+                "view": "timeSeries",
+                "stacked": false,
+                "period": 60,
+                "stat": "Sum"
+            }
+        },
+        {
+            "height": 3,
+            "width": 8,
+            "y": 60,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/ElastiCache", "CacheHits", "CacheClusterId", "prod-001" ],
+                    [ "...", "prod-cluster-0001-001" ],
+                    [ "...", "prod-cluster-0002-002" ],
+                    [ "...", "prod-cluster-0002-001" ],
+                    [ "...", "prod-cluster-0001-002" ],
+                    [ "...", "prod-cluster-0003-001" ],
+                    [ "...", "prod-cluster-0004-001" ],
+                    [ ".", ".", { "label": "CacheHits Total" } ]
+                ],
+                "legend": {
+                    "position": "bottom"
+                },
+                "region": "eu-central-1",
+                "liveData": false,
+                "title": "CacheHits: Sum",
+                "view": "timeSeries",
+                "stacked": false,
+                "period": 60,
+                "stat": "Sum"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 52,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/ElastiCache", "BytesUsedForCache", "CacheClusterId", "prod-001" ],
+                    [ "...", "prod-cluster-0001-001" ],
+                    [ "...", "prod-cluster-0002-002" ],
+                    [ "...", "prod-cluster-0002-001" ],
+                    [ "...", "prod-cluster-0001-002" ],
+                    [ "...", "prod-cluster-0003-001" ],
+                    [ "...", "prod-cluster-0004-001" ],
+                    [ ".", ".", { "label": "BytesUsedForCache Total" } ]
+                ],
+                "legend": {
+                    "position": "bottom"
+                },
+                "region": "eu-central-1",
+                "liveData": false,
+                "title": "BytesUsedForCache: Sum 1 min",
+                "view": "timeSeries",
+                "stacked": false,
+                "period": 60,
+                "stat": "Sum"
+            }
+        },
+        {
+            "height": 3,
+            "width": 8,
+            "y": 63,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/ElastiCache", "CacheMisses", "CacheClusterId", "prod-cluster-0002-001" ],
+                    [ "...", "prod-cluster-0001-001" ],
+                    [ "...", "prod-cluster-0001-002" ],
+                    [ "...", "prod-cluster-0002-002" ],
+                    [ "...", "prod-001" ],
+                    [ "...", "prod-cluster-0003-001" ],
+                    [ "...", "prod-cluster-0004-001" ],
+                    [ ".", ".", { "label": "CacheMisses Total" } ]
+                ],
+                "legend": {
+                    "position": "bottom"
+                },
+                "region": "eu-central-1",
+                "liveData": false,
+                "title": "CacheMisses: Sum 1 min",
+                "view": "timeSeries",
+                "stacked": false,
+                "period": 60,
+                "stat": "Sum"
+            }
+        },
+        {
+            "height": 4,
+            "width": 8,
+            "y": 71,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/ElastiCache", "NetworkBytesOut", "CacheClusterId", "prod-001" ],
+                    [ "...", "prod-cluster-0001-001" ],
+                    [ "...", "prod-cluster-0002-002" ],
+                    [ "...", "prod-cluster-0002-001" ],
+                    [ "...", "prod-cluster-0001-002" ]
+                ],
+                "legend": {
+                    "position": "bottom"
+                },
+                "region": "eu-central-1",
+                "liveData": false,
+                "title": "NetworkBytesOut: SUM per 1 min",
+                "view": "timeSeries",
+                "stacked": false,
+                "period": 60,
+                "stat": "Sum"
+            }
+        },
+        {
+            "height": 3,
+            "width": 8,
+            "y": 75,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/ElastiCache", "NetworkPacketsIn", "CacheClusterId", "prod-001" ],
+                    [ "...", "prod-cluster-0001-001" ],
+                    [ "...", "prod-cluster-0001-002" ],
+                    [ "...", "prod-cluster-0002-001" ],
+                    [ "...", "prod-cluster-0002-002" ]
+                ],
+                "region": "eu-central-1",
+                "title": "NetworkPacketsIn: Average"
+            }
+        },
+        {
+            "height": 3,
+            "width": 8,
+            "y": 78,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/ElastiCache", "NetworkPacketsOut", "CacheClusterId", "prod-001" ],
+                    [ "...", "prod-cluster-0001-001" ],
+                    [ "...", "prod-cluster-0001-002" ],
+                    [ "...", "prod-cluster-0002-001" ],
+                    [ "...", "prod-cluster-0002-002" ],
+                    [ "...", "prod-cluster-0003-001" ],
+                    [ "...", "prod-cluster-0004-001" ]
+                ],
+                "region": "eu-central-1",
+                "title": "NetworkPacketsOut: Average",
+                "period": 300
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 28,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/ElastiCache", "NetworkBandwidthOutAllowanceExceeded", "CacheClusterId", "prod-001" ],
+                    [ "...", "prod-cluster-0001-001" ],
+                    [ "...", "prod-cluster-0001-002" ],
+                    [ "...", "prod-cluster-0002-001" ],
+                    [ "...", "prod-cluster-0002-002" ],
+                    [ ".", "NetworkBandwidthInAllowanceExceeded", ".", "prod-001" ],
+                    [ "...", "prod-cluster-0001-001" ],
+                    [ "...", "prod-cluster-0001-002" ],
+                    [ "...", "prod-cluster-0002-001" ],
+                    [ "...", "prod-cluster-0002-002" ],
+                    [ "...", "prod-cluster-0003-001" ],
+                    [ "...", "prod-cluster-0004-001" ],
+                    [ ".", "NetworkBandwidthOutAllowanceExceeded", ".", "prod-cluster-0003-001" ],
+                    [ "...", "prod-cluster-0004-001" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "title": "NetworkBandwidthAllowanceExceeded In&Out: Average",
+                "period": 60,
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 2,
+            "width": 8,
+            "y": 2,
+            "x": 16,
+            "type": "alarm",
+            "properties": {
+                "title": "Redis Alarms",
+                "alarms": [
+                    "arn:aws:cloudwatch:eu-central-1:000000000000:alarm:DatabaseMemoryUsagePercentage Redis",
+                    "arn:aws:cloudwatch:eu-central-1:000000000000:alarm:Redis CPU_alarm_PROD"
+                ]
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 40,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                [ "AWS/EC2", "EBSWriteOps", "InstanceId", "i-00000000000000000" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "title": "EC2 EBSWriteOps: Average",
+                "period": 300,
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 22,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ { "expression": "m1+m8", "label": "prod-cluster-replica2 NetworkBytes", "id": "e1", "region": "eu-central-1" } ],
+                    [ { "expression": "m2+m9", "label": "prod-cluster-replica1 NetworkBytes", "id": "e2", "region": "eu-central-1" } ],
+                    [ { "expression": "m3+m10", "label": "prod-cluster-shard2 NetworkBytes", "id": "e3", "region": "eu-central-1" } ],
+                    [ { "expression": "m4+m7", "label": "prod-cluster-shard1 NetworkBytes", "id": "e4", "region": "eu-central-1" } ],
+                    [ { "expression": "m5+m6", "label": "prod-old NetworkBytes", "id": "e5", "region": "eu-central-1" } ],
+                    [ { "expression": "m11+m13", "label": "prod-cluster-shard3 NetworkBytes", "id": "e6", "region": "eu-central-1" } ],
+                    [ { "expression": "m12+m14", "label": "prod-cluster-shard4 NetworkBytes", "id": "e7", "region": "eu-central-1" } ],
+                    [ "AWS/ElastiCache", "NetworkBytesIn", "CacheClusterId", "prod-cluster-0002-002", { "id": "m1", "visible": false } ],
+                    [ "...", "prod-cluster-0001-002", { "id": "m2", "visible": false } ],
+                    [ "...", "prod-cluster-0002-001", { "id": "m3", "visible": false } ],
+                    [ "...", "prod-cluster-0001-001", { "id": "m4", "visible": false } ],
+                    [ "...", "prod-001", { "id": "m5", "visible": false } ],
+                    [ ".", "NetworkBytesOut", ".", ".", { "id": "m6", "visible": false } ],
+                    [ "...", "prod-cluster-0001-001", { "id": "m7", "visible": false } ],
+                    [ "...", "prod-cluster-0002-002", { "id": "m8", "visible": false } ],
+                    [ "...", "prod-cluster-0001-002", { "id": "m9", "visible": false } ],
+                    [ "...", "prod-cluster-0002-001", { "id": "m10", "visible": false } ],
+                    [ ".", "NetworkBytesIn", ".", "prod-cluster-0003-001", { "id": "m11", "visible": false } ],
+                    [ "...", "prod-cluster-0004-001", { "id": "m12", "visible": false } ],
+                    [ ".", "NetworkBytesOut", ".", "prod-cluster-0003-001", { "id": "m13", "visible": false } ],
+                    [ "...", "prod-cluster-0004-001", { "id": "m14", "visible": false } ]
+                ],
+                "legend": {
+                    "position": "bottom"
+                },
+                "region": "eu-central-1",
+                "liveData": false,
+                "title": "NetworkBytesTotal: SUM per 1 min ( Up to 10 Gbit/s ~= 1.5Gbit/s baseline = 150MB/s in+out traffic = 9GB/min)",
+                "view": "timeSeries",
+                "stacked": false,
+                "period": 60,
+                "stat": "Sum"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 40,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/ElastiCache", "NewConnections", "CacheClusterId", "prod-001" ],
+                    [ "...", "prod-cluster-0001-001" ],
+                    [ "...", "prod-cluster-0001-002" ],
+                    [ "...", "prod-cluster-0002-001" ],
+                    [ "...", "prod-cluster-0002-002" ],
+                    [ "...", "prod-cluster-0003-001" ],
+                    [ "...", "prod-cluster-0004-001" ],
+                    [ ".", ".", { "label": "NewConnections Total" } ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "stat": "Sum",
+                "period": 60,
+                "title": "NewConnections: Sum 1 min"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 34,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/ElastiCache", "CurrConnections", "CacheClusterId", "prod-001" ],
+                    [ "...", "prod-cluster-0001-001" ],
+                    [ "...", "prod-cluster-0001-002" ],
+                    [ "...", "prod-cluster-0002-001" ],
+                    [ "...", "prod-cluster-0002-002" ],
+                    [ "...", "prod-cluster-0003-001" ],
+                    [ "...", "prod-cluster-0004-001" ],
+                    [ ".", ".", { "label": "CurrConnections Total" } ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "title": "CurrConnections: SUM 1 min",
+                "period": 60,
+                "stat": "Sum"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 46,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/ElastiCache", "StringBasedCmdsLatency", "CacheClusterId", "prod-001" ],
+                    [ "...", "prod-cluster-0001-001" ],
+                    [ "...", "prod-cluster-0001-002" ],
+                    [ "...", "prod-cluster-0002-001" ],
+                    [ "...", "prod-cluster-0002-002" ],
+                    [ "...", "prod-cluster-0003-001" ],
+                    [ "...", "prod-cluster-0004-001" ]
+                ],
+                "region": "eu-central-1",
+                "title": "StringBasedCmdsLatency",
+                "period": 300
+            }
+        },
+        {
+            "height": 2,
+            "width": 8,
+            "y": 58,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/ElastiCache", "ReplicationLag", "CacheClusterId", "prod-001" ],
+                    [ "...", "prod-cluster-0001-001" ],
+                    [ "...", "prod-cluster-0001-002" ],
+                    [ "...", "prod-cluster-0002-001" ],
+                    [ "...", "prod-cluster-0002-002" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "stat": "Average",
+                "period": 300,
+                "title": "ReplicationLag"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 10,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/ElastiCache", "DatabaseMemoryUsagePercentage" ]
+                ],
+                "region": "eu-central-1",
+                "title": "DatabaseMemoryUsagePercentage"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 16,
+            "x": 16,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/ElastiCache", "CurrVolatileItems", { "label": "Items with TTL", "region": "eu-central-1" } ],
+                    [ "AWS/ElastiCache", "CurrItems", { "label": "Items", "region": "eu-central-1" } ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "title": "CurrItems & CurrVolatileItems: Average",
+                "stat": "Average",
+                "period": 60
+            }
+        },
+        {
+            "height": 3,
+            "width": 4,
+            "y": 52,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "sparkline": true,
+                "view": "singleValue",
+                "metrics": [
+                    [ "AWS/S3", "BucketSizeBytes", "StorageType", "StandardStorage", "BucketName", "bucket001", { "period": 86400 } ]
+                ],
+                "region": "eu-central-1",
+                "title": "s3 bucket001 total bucket size"
+            }
+        },
+        {
+            "height": 3,
+            "width": 4,
+            "y": 87,
+            "x": 8,
+            "type": "metric",
+            "properties": {
+                "sparkline": true,
+                "view": "singleValue",
+                "metrics": [
+                    [ "AWS/ES", "FreeStorageSpace", "DomainName", "logs", "ClientId", "000000000000" ]
+                ],
+                "region": "eu-central-1",
+                "title": "OSS FreeStorageSpace"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 74,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/Lambda", "Duration", "FunctionName", "AccessLogsToOpenSearch_logs", "Resource", "AccessLogsToOpenSearch_logs" ],
+                    [ "...", "ErrorLogsToOpenSearch_logs", ".", "ErrorLogsToOpenSearch_logs" ],
+                    [ "...", "LogsToElasticsearch_logs", ".", "LogsToElasticsearch_logs" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "title": "Lamda sending logs Duration: nginx",
+                "period": 300,
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 1,
+            "width": 8,
+            "y": 55,
+            "x": 0,
+            "type": "text",
+            "properties": {
+                "markdown": "# Lamda"
+            }
+        },
+        {
+            "height": 1,
+            "width": 8,
+            "y": 80,
+            "x": 8,
+            "type": "text",
+            "properties": {
+                "markdown": "# OSS"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 56,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "period": 60,
+                "metrics": [
+                    [ "AWS/Lambda", "Errors", "FunctionName", "AccessLogsToOpenSearch_logs", { "id": "errors", "stat": "Sum", "color": "#d13212" } ],
+                    [ ".", "Invocations", ".", ".", { "id": "invocations", "stat": "Sum", "visible": false } ],
+                    [ { "expression": "100 - 100 * errors / MAX([errors, invocations])", "label": "Success rate (%)", "id": "availability", "yAxis": "right", "region": "eu-central-1" } ]
+                ],
+                "region": "eu-central-1",
+                "title": "Lambda: nginx-access - Error count and success rate (%)",
+                "yAxis": {
+                    "right": {
+                        "max": 100
+                    }
+                },
+                "view": "timeSeries",
+                "stacked": false
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 86,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/Lambda", "Invocations", "FunctionName", "AccessLogsToOpenSearch_logs" ],
+                    [ "...", "ErrorLogsToOpenSearch_logs" ],
+                    [ "...", "LogsToElasticsearch_logs", { "visible": false } ]
+                ],
+                "period": 60,
+                "region": "eu-central-1",
+                "title": "Lambda: nginx - Invocations",
+                "view": "timeSeries",
+                "stacked": false,
+                "stat": "Sum"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 98,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/Lambda", "ConcurrentExecutions", "FunctionName", "AccessLogsToOpenSearch_logs" ],
+                    [ "...", "ErrorLogsToOpenSearch_logs" ],
+                    [ "...", "LogsToElasticsearch_logs", { "visible": false } ]
+                ],
+                "period": 60,
+                "region": "eu-central-1",
+                "title": "Lambda: nginx - Concurrent executions",
+                "view": "timeSeries",
+                "stacked": false,
+                "stat": "Maximum"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 104,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/Lambda", "ConcurrentExecutions", "FunctionName", "AccessLogsToOpenSearch_logs", { "visible": false } ],
+                    [ "...", "ErrorLogsToOpenSearch_logs", { "visible": false } ],
+                    [ "...", "LogsToElasticsearch_logs" ]
+                ],
+                "period": 60,
+                "region": "eu-central-1",
+                "title": "Lambda: cwl -Concurrent executions",
+                "view": "timeSeries",
+                "stacked": false,
+                "stat": "Maximum"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 92,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/Lambda", "Invocations", "FunctionName", "AccessLogsToOpenSearch_logs", { "visible": false } ],
+                    [ "...", "ErrorLogsToOpenSearch_logs", { "visible": false } ],
+                    [ "...", "LogsToElasticsearch_logs" ]
+                ],
+                "period": 60,
+                "region": "eu-central-1",
+                "title": "Lambda: cwl - Invocations",
+                "view": "timeSeries",
+                "stacked": false,
+                "stat": "Sum"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 80,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/Lambda", "Duration", "FunctionName", "AccessLogsToOpenSearch_logs", "Resource", "AccessLogsToOpenSearch_logs", { "visible": false } ],
+                    [ "...", "ErrorLogsToOpenSearch_logs", ".", "ErrorLogsToOpenSearch_logs", { "visible": false } ],
+                    [ "...", "LogsToElasticsearch_logs", ".", "LogsToElasticsearch_logs" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "title": "Lamda sending logs Duration: cwl",
+                "period": 300,
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 62,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "period": 60,
+                "metrics": [
+                    [ "AWS/Lambda", "Errors", "FunctionName", "ErrorLogsToOpenSearch_logs", { "id": "errors", "stat": "Sum", "color": "#d13212" } ],
+                    [ "AWS/Lambda", "Invocations", "FunctionName", "ErrorLogsToOpenSearch_logs", { "id": "invocations", "stat": "Sum", "visible": false } ],
+                    [ { "expression": "100 - 100 * errors / MAX([errors, invocations])", "label": "Success rate (%)", "id": "availability", "yAxis": "right", "region": "eu-central-1" } ]
+                ],
+                "region": "eu-central-1",
+                "title": "Lambda: nginx-error- Error count and success rate (%)",
+                "yAxis": {
+                    "right": {
+                        "max": 100
+                    }
+                },
+                "view": "timeSeries",
+                "stacked": false
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 68,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "period": 60,
+                "metrics": [
+                    [ "AWS/Lambda", "Errors", "FunctionName", "LogsToElasticsearch_logs", { "id": "errors", "stat": "Sum", "color": "#d13212" } ],
+                    [ "AWS/Lambda", "Invocations", "FunctionName", "LogsToElasticsearch_logs", { "id": "invocations", "stat": "Sum", "visible": false } ],
+                    [ { "expression": "100 - 100 * errors / MAX([errors, invocations])", "label": "Success rate (%)", "id": "availability", "yAxis": "right" } ]
+                ],
+                "region": "eu-central-1",
+                "title": "Lambda: cwl - Error count and success rate (%)",
+                "yAxis": {
+                    "right": {
+                        "max": 100
+                    }
+                },
+                "view": "timeSeries",
+                "stacked": false
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 46,
+            "x": 8,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/RDS", "BinLogDiskUsage", "DBInstanceIdentifier", "production" ]
+                ],
+                "region": "eu-central-1",
+                "title": "RDS BinLogDiskUsage",
+                "period": 300
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 52,
+            "x": 8,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/RDS", "ReadLatency", "DBInstanceIdentifier", "production" ],
+                    [ ".", "WriteLatency", ".", "." ]
+                ],
+                "region": "eu-central-1",
+                "title": "RDS Read/WriteLatency",
+                "period": 300
+            }
+        },
+        {
+            "height": 7,
+            "width": 8,
+            "y": 58,
+            "x": 8,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/RDS", "ReadThroughput", "DBInstanceIdentifier", "production", { "id": "m1" } ],
+                    [ { "expression": "ANOMALY_DETECTION_BAND(m1, 2)", "label": "ReadThroughput (expected)", "id": "ad1", "color": "#95A5A6", "region": "eu-central-1" } ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "title": "RDS ReadThroughput",
+                "period": 300,
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 65,
+            "x": 8,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/RDS", "ReadThroughput", "DBInstanceIdentifier", "production", { "id": "m1", "visible": false } ],
+                    [ { "expression": "ANOMALY_DETECTION_BAND(m1, 2)", "label": "ReadThroughput (expected)", "id": "ad1", "color": "#95A5A6", "region": "eu-central-1", "visible": false } ],
+                    [ "AWS/RDS", "WriteThroughput", "DBInstanceIdentifier", "production", { "id": "m2" } ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "title": "RDS WriteThroughput",
+                "period": 300,
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 71,
+            "x": 8,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/RDS", "NetworkReceiveThroughput", "DBInstanceIdentifier", "production" ],
+                    [ ".", "NetworkTransmitThroughput", ".", "." ]
+                ],
+                "region": "eu-central-1",
+                "title": "RDS NetworkReceiveThroughput + NetworkTransmitThroughput"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 81,
+            "x": 8,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/ES", "2xx", "DomainName", "logs", "ClientId", "000000000000" ],
+                    [ ".", "4xx", ".", ".", ".", "." ],
+                    [ ".", "5xx", ".", ".", ".", "." ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "title": "OSS: HTTP requests by response code 2xx, 4xx, 5xx",
+                "period": 300,
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 46,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/EC2", "EBSReadOps", "InstanceId", "i-00000000000000000" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "title": "EC2 EBSReadOps: Average",
+                "period": 300,
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 6,
+            "width": 8,
+            "y": 34,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/EC2", "EBSReadBytes", "InstanceId", "i-00000000000000000" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "stat": "Average",
+                "period": 300,
+                "title": "EC2 EBSReadBytes: Average"
+            }
+        },
+        {
+            "height": 3,
+            "width": 4,
+            "y": 52,
+            "x": 4,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/S3", "BucketSizeBytes", "StorageType", "StandardStorage", "BucketName", "bucket001", { "visible": false } ],
+                    [ "System/Linux", "DiskSpaceUtilization", "MountPath", "/", "InstanceId", "i-00000000000000000", "Filesystem", "/dev/nvme0n1p1" ]
+                ],
+                "sparkline": true,
+                "view": "singleValue",
+                "region": "eu-central-1",
+                "title": "Free Disk Space PROD",
+                "period": 86400,
+                "stat": "Average"
+            }
+        }
+    ]
+}
