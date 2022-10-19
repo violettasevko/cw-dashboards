@@ -1,0 +1,239 @@
+{
+    "start": "-PT168H",
+    "widgets": [
+        {
+            "height": 6,
+            "width": 9,
+            "y": 18,
+            "x": 15,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/RDS", "WriteIOPS", "DBInstanceIdentifier", "production" ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "title": "RDS production Write IOPS",
+                "region": "eu-central-1",
+                "stat": "Average",
+                "period": 300
+            }
+        },
+        {
+            "height": 6,
+            "width": 9,
+            "y": 0,
+            "x": 15,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/EC2", "CPUUtilization", "InstanceId", "i-00000000000000000", { "id": "m1" } ],
+                    [ { "expression": "ANOMALY_DETECTION_BAND(m1, 2)", "label": "CPUUtilization (expected)", "id": "ad1", "color": "#95A5A6", "region": "eu-central-1" } ]
+                ],
+                "region": "eu-central-1",
+                "title": "EC2 production CPUUtilization",
+                "period": 300
+            }
+        },
+        {
+            "height": 5,
+            "width": 3,
+            "y": 0,
+            "x": 3,
+            "type": "alarm",
+            "properties": {
+                "title": "ALARMS",
+                "alarms": [
+                    "arn:aws:cloudwatch:eu-central-1:000000000000:alarm:CPU_alarm65%_PROD",
+                    "arn:aws:cloudwatch:eu-central-1:000000000000:alarm:OpenSearch Free Storage Space",
+                    "arn:aws:cloudwatch:eu-central-1:000000000000:alarm:RDS_disk_low"
+                ]
+            }
+        },
+        {
+            "height": 6,
+            "width": 9,
+            "y": 6,
+            "x": 6,
+            "type": "text",
+            "properties": {
+                "markdown": "# RDS\nName | Description | Link \n----|-----|----- \nproduction | Prod | [Performance Insights](https://eu-central-1.console.aws.amazon.com/rds/home?region=eu-central-1#performance-insights-v20206:/resourceId/db-ZSKBYHWTDOUNVWIVKY2CZ5UISU/resourceName/production/startTime/1658319032541/endTime/1658923832541/presetKey/1w/presetUnit/week/presetAmount/1) [button:primary:error logs](https://eu-central-1.console.aws.amazon.com/cloudwatch/home?region=eu-central-1#logsV2:log-groups/log-group/$252Faws$252Frds$252Finstance$252Fproduction$252Ferror/log-events/production) \ndev | Dev\ncopy-prod | Created everyday copy of Prod\n \n "
+            }
+        },
+        {
+            "height": 5,
+            "width": 3,
+            "y": 0,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/RDS", "FreeStorageSpace", "DBInstanceIdentifier", "production", { "id": "m1" } ]
+                ],
+                "sparkline": true,
+                "view": "singleValue",
+                "region": "eu-central-1",
+                "period": 300,
+                "title": "RDS Prod - free space",
+                "stat": "Average"
+            }
+        },
+        {
+            "height": 5,
+            "width": 3,
+            "y": 5,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "sparkline": true,
+                "view": "singleValue",
+                "metrics": [
+                    [ "AWS/S3", "BucketSizeBytes", "StorageType", "StandardStorage", "BucketName", "bucket001", { "period": 86400 } ]
+                ],
+                "region": "eu-central-1",
+                "title": "s3 bucket001 total bucket size"
+            }
+        },
+        {
+            "height": 6,
+            "width": 9,
+            "y": 12,
+            "x": 6,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/ES", "FreeStorageSpace", "DomainName", "logs", "ClientId", "000000000000" ]
+                ],
+                "region": "eu-central-1",
+                "title": "OSS FreeStorageSpace"
+            }
+        },
+        {
+            "height": 6,
+            "width": 9,
+            "y": 0,
+            "x": 6,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "title": "RDS production CPU Utilization",
+                "metrics": [
+                    [ "AWS/RDS", "CPUUtilization", "DBInstanceIdentifier", "production" ]
+                ],
+                "region": "eu-central-1"
+            }
+        },
+        {
+            "height": 5,
+            "width": 3,
+            "y": 5,
+            "x": 3,
+            "type": "metric",
+            "properties": {
+                "sparkline": true,
+                "view": "singleValue",
+                "metrics": [
+                    [ "AWS/ES", "FreeStorageSpace", "DomainName", "logs", "ClientId", "000000000000" ]
+                ],
+                "region": "eu-central-1",
+                "title": "OSS FreeStorageSpace"
+            }
+        },
+        {
+            "height": 3,
+            "width": 6,
+            "y": 11,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "title": "Disk_space_utilization_more_than_75",
+                "annotations": {
+                    "alarms": [
+                        "arn:aws:cloudwatch:eu-central-1:000000000000:alarm:Disk_space_utilization_more_than_75"
+                    ]
+                },
+                "liveData": false,
+                "start": "-PT3H",
+                "end": "PT0H",
+                "region": "eu-central-1",
+                "view": "singleValue",
+                "stacked": false
+            }
+        },
+        {
+            "height": 6,
+            "width": 9,
+            "y": 12,
+            "x": 15,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/Lambda", "Duration", "FunctionName", "AccessLogsToOpenSearch_logs", "Resource", "AccessLogsToOpenSearch_logs" ],
+                    [ "...", "ErrorLogsToOpenSearch_logs", ".", "ErrorLogsToOpenSearch_logs" ]
+                ],
+                "region": "eu-central-1",
+                "title": "Lamda sending logs Duration"
+            }
+        },
+        {
+            "height": 5,
+            "width": 9,
+            "y": 24,
+            "x": 15,
+            "type": "metric",
+            "properties": {
+                "view": "timeSeries",
+                "stacked": false,
+                "metrics": [
+                    [ "AWS/ES", "4xx", "DomainName", "logs", "ClientId", "000000000000" ]
+                ],
+                "region": "eu-central-1"
+            }
+        },
+        {
+            "height": 6,
+            "width": 9,
+            "y": 6,
+            "x": 15,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/EC2", "NetworkIn", "InstanceId", "i-00000000000000000", { "id": "m1", "yAxis": "right" } ],
+                    [ ".", "CPUUtilization", ".", ".", { "id": "m2" } ],
+                    [ { "expression": "ANOMALY_DETECTION_BAND(m2, 2)", "label": "CPUUtilization (expected)", "id": "ad1", "color": "#95A5A6" } ]
+                ],
+                "view": "timeSeries",
+                "stacked": false,
+                "region": "eu-central-1",
+                "period": 300,
+                "stat": "Average",
+                "title": "Prod: Traffic + CPU"
+            }
+        },
+        {
+            "height": 1,
+            "width": 6,
+            "y": 10,
+            "x": 0,
+            "type": "metric",
+            "properties": {
+                "metrics": [
+                    [ "AWS/ElastiCache", "CurrConnections", "CacheClusterId", "prod-001", { "period": 300, "stat": "Sum" } ]
+                ],
+                "legend": {
+                    "position": "bottom"
+                },
+                "region": "eu-central-1",
+                "liveData": false,
+                "title": "CurrConnections: Sum"
+            }
+        }
+    ]
+}

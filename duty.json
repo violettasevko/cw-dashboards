@@ -263,7 +263,7 @@
             "properties": {
                 "title": "EC2 Alarms",
                 "alarms": [
-                    "arn:aws:cloudwatch:eu-central-1:000000000000:alarm:CPU_alarm_PROD",  #0000 <-account id
+                    "arn:aws:cloudwatch:eu-central-1:000000000000:alarm:CPU_alarm_PROD", 
                     "arn:aws:cloudwatch:eu-central-1:000000000000:alarm:Disk_space_utilization_PROD"
                 ]
             }
